@@ -16,6 +16,11 @@
     "url": "https://github.com/cf7/mini-spy/issues"
   },
   "homepage": "https://github.com/cf7/mini-spy#readme",
+  "scripts": {
+    "start:dev": "./node_modules/.bin/nodemon ./bin/www.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "mocha"
+  },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
