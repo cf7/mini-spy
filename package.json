@@ -2,7 +2,7 @@
   "name": "mini-spy",
   "version": "1.0.0",
   "description": "node webservice with Sequelize",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
