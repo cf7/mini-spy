@@ -6,8 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
   }, {
     classMethods: {
-      associate(models) { // eslint-disable-line no-unused-vars
-        // associations can be defined here
+      associate: (models) => {
+        StaffMember.hasMany(models.Client, {
+          foreignKey: 'caseManagerId',
+          as: 'clients',
+        });
       },
     },
   });
