@@ -8,3 +8,7 @@ rules:
     off
   import/no-extraneous-dependencies:
     off
+  object-shorthand:
+    off
+  comma-dangle:
+    off
