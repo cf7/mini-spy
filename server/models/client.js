@@ -3,10 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     nickname: DataTypes.STRING,
-    birthdate: DataTypes.DATE,
+    birthdate: DataTypes.DATEONLY,
     email: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
-    casePlan: DataTypes.STRING,
+    casePlan: DataTypes.STRING(2000),
   }, {
     classMethods: {
       associate: (models) => {
