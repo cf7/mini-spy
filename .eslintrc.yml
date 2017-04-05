@@ -12,3 +12,6 @@ rules:
     off
   comma-dangle:
     off
+  max-len:
+    - error
+    - 128
