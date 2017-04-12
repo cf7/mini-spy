@@ -4,7 +4,7 @@
   "description": "node webservice with Sequelize",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node ./bin/www.js;",
     "nodemon": "export NODE_ENV=development; nodemon ./bin/www.js;",
     "db-init": "cd $(npm bin)/../..; echo 'Deleting db & logs'; rm -rf db; rm -rf log; mkdir db; mkdir log; echo 'Initializing db'; initdb -U postgres -D $(npm bin)/../../db; pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start; sleep 4; chmod 700 $(npm bin)/../../create_mini_spy.sh; $(npm bin)/../../create_mini_spy.sh;",
     "db-start": "pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start",
