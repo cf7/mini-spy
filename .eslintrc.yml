@@ -17,3 +17,5 @@ rules:
     - 128
   eol-last:
     off
+  arrow-parens:
+    off

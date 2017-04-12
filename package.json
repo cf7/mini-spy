@@ -4,13 +4,15 @@
   "description": "node webservice with Sequelize",
   "main": "app.js",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon ./bin/www.js",
+    "start": "node app.js",
+    "nodemon": "export NODE_ENV=development; nodemon ./bin/www.js;",
     "db-init": "cd $(npm bin)/../..; echo 'Deleting db & logs'; rm -rf db; rm -rf log; mkdir db; mkdir log; echo 'Initializing db'; initdb -U postgres -D $(npm bin)/../../db; pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start; sleep 4; chmod 700 $(npm bin)/../../create_mini_spy.sh; $(npm bin)/../../create_mini_spy.sh;",
     "db-start": "pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start",
     "db-stop": "pg_ctl -D $(npm bin)/../../db stop -s -m fast",
-    "db-reset": "npm run db-stop; npm run db-init; npm run db-start;",
+    "db-reset": "npm run db-stop; export NODE_ENV=development; npm run db-init; npm run db-start;",
+    "test-db-reset": "npm run db-stop; npm run db-init; npm run db-start;",
     "lint": "eslint app.js **/*.js",
-    "test": "NODE_ENV=test mocha"
+    "test": "export NODE_ENV=test; npm run test-db-reset; $(npm bin)/sequelize db:migrate; mocha;"
   },
   "repository": {
     "type": "git",

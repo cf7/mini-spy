@@ -1,10 +1,11 @@
 #!/bin/bash
 
-if [[ $NODE_ENV -eq "development" ]];
+if [ "$NODE_ENV" = "development" ];
 then
-    echo "Here!";
+    echo "Creating Development Database";
     createdb community-dev -O postgres -U postgres -e;
-elif [[ $NODE_ENV -eq "test" ]];
+elif [ "$NODE_ENV" = "test" ];
     then
+        echo "Creating Test Database";
         createdb community-test -O postgres -U postgres -e;
 fi;

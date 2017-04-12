@@ -25,7 +25,6 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
         return done();
       });
   });
@@ -40,11 +39,10 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
-        expect(response.body).to.have.property('name');
-        expect(response.body.name).to.equal('administator');
-        expect(response.body).to.have.property('description');
-        expect(response.body.description).to.equal('administrates');
+        expect(response.body[0]).to.have.property('name');
+        expect(response.body[0].name).to.equal('administator');
+        expect(response.body[0]).to.have.property('description');
+        expect(response.body[0].description).to.equal('administrates');
         return done();
       });
   });
@@ -64,7 +62,6 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
         return done();
       });
   });
@@ -84,7 +81,6 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
         return done();
       });
   });
@@ -99,7 +95,6 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
         expect(response.body).to.have.property('firstName');
         expect(response.body.name).to.equal('Carrie');
         expect(response.body).to.have.property('lastName');
@@ -118,7 +113,6 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
         expect(response.body).to.have.property('firstName');
         expect(response.body.name).to.equal('Ted');
         expect(response.body).to.have.property('lastName');
@@ -142,7 +136,6 @@ describe('API', () => {
         if (error) {
           return done(error);
         }
-        console.log(response);
         return done();
       });
   });

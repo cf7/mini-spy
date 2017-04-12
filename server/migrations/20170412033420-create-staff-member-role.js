@@ -6,7 +6,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         references: {
-          model: 'StaffMembers',
+          model: 'StaffMember',
           key: 'id',
         },
       },
@@ -15,7 +15,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         references: {
-          model: 'Roles',
+          model: 'Role',
           key: 'id',
         },
       },
