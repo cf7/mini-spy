@@ -47,6 +47,20 @@ describe('API Role Endpoints', () => {
       });
   });
 
+  it('deletes all roles', (done) => {
+    request(app)
+      .delete('/roles')
+      .expect(204)
+      .end((error, response) => {
+        if (error) {
+          return done(error);
+        }
+        return done();
+      });
+  });
+});
+
+describe('API StaffMember Endpoints', () => {
   it('creates a new staffmember account', (done) => {
     request(app)
       .post('/staffmembers')
@@ -65,9 +79,6 @@ describe('API Role Endpoints', () => {
         return done();
       });
   });
-});
-
-describe('API StaffMember Endpoints', () => {
   it('creates a new staffmember account', (done) => {
     request(app)
       .post('/staffmembers')
