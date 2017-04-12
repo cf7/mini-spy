@@ -32,7 +32,7 @@ npm run db-reset
 
 Start server
 ```
-npm start
+npm run start:dev
 ```
 
 Alternately, start server to auto restart when a file changes, _provided by [nodemon](https://github.com/remy/nodemon/)_
