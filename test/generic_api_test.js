@@ -12,7 +12,7 @@ describe('GET /', () => {
   });
 });
 
-describe('API', () => {
+describe('API Role Endpoints', () => {
   it('creates a new role', (done) => {
     request(app)
       .post('/roles')
@@ -65,7 +65,9 @@ describe('API', () => {
         return done();
       });
   });
+});
 
+describe('API StaffMember Endpoints', () => {
   it('creates a new staffmember account', (done) => {
     request(app)
       .post('/staffmembers')

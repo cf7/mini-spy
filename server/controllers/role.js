@@ -17,4 +17,12 @@ module.exports = {
       .then((roles) => response.status(200).send(roles))
       .catch((error) => response.status(400).send(error));
   },
+
+  deleteAll(request, response) {
+    if (process.env.NODE_ENV === 'test') {
+      Role.truncate({ cascade: true, restartIdentity: true }).then(() => response.status(204).send({}));
+    } else {
+      response.status(403).send({ message: 'Whoa there' });
+    }
+  }
 };
