@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/www.js;",
     "nodemon": "export NODE_ENV=development; nodemon ./bin/www.js;",
-    "db-init": "cd $(npm bin)/../..; echo 'Deleting db & logs'; rm -rf db; rm -rf log; mkdir db; mkdir log; echo 'Initializing db'; initdb -U postgres -D $(npm bin)/../../db; pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start; sleep 4; chmod 700 $(npm bin)/../../create_mini_spy.sh; $(npm bin)/../../create_mini_spy.sh;",
+    "db-init": "cd $(npm bin)/../..; echo 'Deleting db & logs'; rm -rf db; rm -rf log; mkdir db; mkdir log; echo 'Initializing db'; initdb -U postgres -D $(npm bin)/../../db; pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start; sleep 4; chmod 700 $(npm bin)/../../create_mini_spy.sh; $(npm bin)/../../create_mini_spy.sh; $(npm bin)/sequelize db:migrate; chmod 700 $(npm bin)/../../seed_db.sh; $(npm bin)/../../seed_db.sh;",
     "db-start": "pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start",
     "db-stop": "pg_ctl -D $(npm bin)/../../db stop -s -m fast",
     "db-reset": "npm run db-stop; export NODE_ENV=development; npm run db-init; npm run db-start;",
@@ -41,6 +41,7 @@
     "mocha": "^3.0.2",
     "mocha-istanbul": "^0.3.0",
     "nodemon": "^1.11.0",
+    "sequelize-cli": "^2.7.0",
     "supertest": "^2.0.1"
   }
 }
