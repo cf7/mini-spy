@@ -2,6 +2,10 @@ const app = require('../app');
 const expect = require('chai').expect;
 const request = require('supertest');
 
+function postRequest(name, description) {
+  return request(app).post('/roles').send({ name, description });
+}
+
 describe('GET /', () => {
   it('responds with a 404 and error message in json', (done) => {
     request(app)
@@ -13,6 +17,10 @@ describe('GET /', () => {
 });
 
 describe('API Role Endpoints', () => {
+  beforeEach((done) => {
+    request(app).delete('/roles').end(done);
+  });
+
   it('creates a new role', (done) => {
     request(app)
       .post('/roles')
@@ -30,31 +38,16 @@ describe('API Role Endpoints', () => {
   });
 
   it('gets all roles', (done) => {
-    request(app)
-      .get('/roles')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end((error, response) => {
-        if (error) {
-          return done(error);
-        }
+    postRequest('administator', 'administrates').expect(201)
+      .then(() => postRequest('staff', 'staffs').expect(201))
+      .then(() => postRequest('volunteer', 'volunteers').expect(201))
+      .then(() => request(app).get('/roles').expect(200))
+      .then((response) => {
+        expect(response.body.length).to.equal(3);
         expect(response.body[0]).to.have.property('name');
         expect(response.body[0].name).to.equal('administator');
         expect(response.body[0]).to.have.property('description');
         expect(response.body[0].description).to.equal('administrates');
-        return done();
-      });
-  });
-
-  it('deletes all roles', (done) => {
-    request(app)
-      .delete('/roles')
-      .expect(204)
-      .end((error, response) => {
-        if (error) {
-          return done(error);
-        }
         return done();
       });
   });
