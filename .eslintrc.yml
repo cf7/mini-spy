@@ -14,7 +14,7 @@ rules:
     off
   max-len:
     - error
-    - 128
+    - 180
   eol-last:
     off
   arrow-parens:
