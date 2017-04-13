@@ -31,13 +31,25 @@ module.exports = {
       },
       {
         staffMemberId: 4,
-        roleId: 3,
+        roleId: 4,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         staffMemberId: 5,
         roleId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        staffMemberId: 6,
+        roleId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        staffMemberId: 7,
+        roleId: 3,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -52,5 +64,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
+    return queryInterface.bulkDelete('StaffMemberRole', null, {});
   }
 };

@@ -51,6 +51,22 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        username: 'hmiles',
+        password: 'thisisapassword4',
+        firstName: 'Henry',
+        lastName: 'Miles',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        username: 'adiaz',
+        password: 'thisisapassword4',
+        firstName: 'Alyssa',
+        lastName: 'Diaz',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

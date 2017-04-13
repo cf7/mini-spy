@@ -24,6 +24,12 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        name: 'employment',
+        description: 'employs',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
         name: 'volunteer',
         description: 'volunteers',
         createdAt: new Date(),
