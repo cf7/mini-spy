@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up: (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -12,9 +10,41 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+    return queryInterface.bulkInsert('StaffMemberRole', [
+      {
+        staffMemberId: 1,
+        roleId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        staffMemberId: 2,
+        roleId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        staffMemberId: 3,
+        roleId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        staffMemberId: 4,
+        roleId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        staffMemberId: 5,
+        roleId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
 
-  down: function (queryInterface, Sequelize) {
+  down: (queryInterface, Sequelize) => {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

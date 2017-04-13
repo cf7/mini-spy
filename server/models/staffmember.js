@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
         });
         StaffMember.belongsToMany(models.Role, {
           through: 'StaffMemberRole',
-          foreignKey: 'staffMemberId',
-          otherKey: 'roleId',
+          foreignKey: 'roleId',
+          otherKey: 'staffMemberId',
         });
       },
     },
