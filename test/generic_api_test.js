@@ -69,7 +69,6 @@ describe('API StaffMember Endpoints', () => {
         password: 'thisisapassword',
         firstName: 'Carrie',
         lastName: 'Smith',
-        roles: '',
       })
       .expect(201)
       .end((error, response) => {
@@ -87,7 +86,6 @@ describe('API StaffMember Endpoints', () => {
         password: 'thisisapasswordagain',
         firstName: 'Ted',
         lastName: 'Greene',
-        roles: '',
       })
       .expect(201)
       .end((error, response) => {

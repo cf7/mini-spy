@@ -12,7 +12,7 @@
     "db-reset": "npm run db-stop; export NODE_ENV=development; npm run db-init; npm run db-start;",
     "test-db-reset": "npm run db-stop; npm run db-init; npm run db-start;",
     "lint": "eslint app.js **/*.js",
-    "test": "export NODE_ENV=test; npm run test-db-reset; $(npm bin)/sequelize db:migrate; mocha;"
+    "test": "export NODE_ENV=test; npm run test-db-reset; $(npm bin)/sequelize db:migrate; mocha; npm run db-stop;"
   },
   "repository": {
     "type": "git",
