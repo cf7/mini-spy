@@ -37,7 +37,7 @@ describe('API Role Endpoints', () => {
       });
   });
 
-  it('gets all roles', (done) => {
+  it('gets all roles', () => {
     let url = '/roles';
     postRequest(url, { name: 'administator', description: 'administrates' }).expect(201)
       .then(() => postRequest(url, { name: 'staff', description: 'staffs' }).expect(201))
@@ -51,7 +51,6 @@ describe('API Role Endpoints', () => {
         expect(response.body[1].description).to.equal('staffs');
         expect(response.body[2].name).to.equal('volunteer');
         expect(response.body[2].description).to.equal('volunteers');
-        return done();
       });
   });
 });
@@ -79,7 +78,7 @@ describe('API StaffMember Endpoints', () => {
       });
   });
 
-  it('gets all staffmember account information', (done) => {
+  it('gets all staffmember account information', () => {
     let url = '/staffmembers';
     postRequest(url, { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
       .then(() => postRequest(url, { username: 'newstaff', password: 'thisisapassword1', firstName: 'Kathy', lastName: 'Jones' }).expect(201))
@@ -99,7 +98,6 @@ describe('API StaffMember Endpoints', () => {
         expect(response.body[2].password).to.equal('thisisapassword2');
         expect(response.body[2].firstName).to.have.property('Ted');
         expect(response.body[2].lastName).to.equal('Greene');
-        return done();
       });
   });
 
