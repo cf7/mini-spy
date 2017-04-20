@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const app = require('../app');
 const expect = require('chai').expect;
 const request = require('supertest');
@@ -38,7 +39,7 @@ describe('API Role Endpoints', () => {
   });
 
   it('gets all roles', () => {
-    let url = '/roles';
+    const url = '/roles';
     postRequest(url, { name: 'administator', description: 'administrates' }).expect(201)
       .then(() => postRequest(url, { name: 'staff', description: 'staffs' }).expect(201))
       .then(() => postRequest(url, { name: 'volunteer', description: 'volunteers' }).expect(201))
@@ -79,7 +80,7 @@ describe('API StaffMember Endpoints', () => {
   });
 
   it('gets all staffmember account information', () => {
-    let url = '/staffmembers';
+    const url = '/staffmembers';
     postRequest(url, { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
       .then(() => postRequest(url, { username: 'newstaff', password: 'thisisapassword1', firstName: 'Kathy', lastName: 'Jones' }).expect(201))
       .then(() => postRequest(url, { username: 'staffer', password: 'thisisapassword2', firstName: 'Ted', lastName: 'Greene' }).expect(201))
