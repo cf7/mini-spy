@@ -4,12 +4,15 @@ module.exports = {
   create(request, response) {
     return StaffMember
       .create({
-        firstName: request.body.firstname,
-        lastName: request.body.lastname,
+        firstName: request.body.firstName,
+        lastName: request.body.lastName,
         username: request.body.username,
-        password: request.body.passwordhash
+        password: request.body.password
       })
       .then((staffmember) => response.status(201).send(staffmember))
-      .catch((error) => response.status(400).send(error));
+      .catch((error) => {
+        console.log(error);
+        response.status(400).send(error);
+      });
   }
 };
