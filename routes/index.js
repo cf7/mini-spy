@@ -1,5 +1,5 @@
 const RoleController = require('../server/controllers').Role;
-const StaffMemberController = require('../server/controllers').StaffMember;
+// const StaffMemberController = require('../server/controllers').StaffMember;
 
 module.exports = (app) => {
   app.post('/roles', RoleController.create);
