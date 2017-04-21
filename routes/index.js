@@ -5,6 +5,6 @@ module.exports = (app) => {
   app.post('/roles', RoleController.create);
   app.get('/roles', RoleController.list); // build in optional pagination later
   app.delete('/roles', RoleController.deleteAll);
-  // app.post('/staffmembers', StaffMemberController.create);
+  app.post('/staffmembers', StaffMemberController.create);
   // app.get('/staffmembers', StaffMemberController.findAll);
 };
