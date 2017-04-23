@@ -22,25 +22,22 @@ describe('API Role Endpoints', () => {
     request(app).delete('/roles').end(done);
   });
 
-  it('creates a new role', (done) => {
-    request(app)
+  it('create a new role', () => {
+    return request(app)
       .post('/roles')
       .send({
         name: 'administator',
         description: 'administrates',
       })
       .expect(201)
-      .end((error, response) => {
-        if (error) {
-          return done(error);
-        }
-        return done();
+      .then((response) => {
+
       });
   });
 
-  it('gets all roles', () => {
+  it('get all roles', () => {
     const url = '/roles';
-    postRequest(url, { name: 'administator', description: 'administrates' }).expect(201)
+    return postRequest(url, { name: 'administator', description: 'administrates' }).expect(201)
       .then(() => postRequest(url, { name: 'staff', description: 'staffs' }).expect(201))
       .then(() => postRequest(url, { name: 'volunteer', description: 'volunteers' }).expect(201))
       .then(() => request(app).get('/roles').expect(200))
@@ -61,8 +58,8 @@ describe('API StaffMember Endpoints', () => {
     request(app).delete('/staffmembers').end(done);
   });
 
-  it('creates a new staffmember account', (done) => {
-    request(app)
+  it('create a new staffmember account', () => {
+    return request(app)
       .post('/staffmembers')
       .send({
         username: 'staff123',
@@ -71,20 +68,17 @@ describe('API StaffMember Endpoints', () => {
         lastName: 'Smith',
       })
       .expect(201)
-      .end((error, response) => {
-        if (error) {
-          return done(error);
-        }
-        return done();
+      .then((response) => {
+
       });
   });
 
-  it('gets all staffmember account information', () => {
+  it('get all staffmember account information', () => {
     const url = '/staffmembers';
-    postRequest(url, { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
+    return postRequest(url, { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
       .then(() => postRequest(url, { username: 'newstaff', password: 'thisisapassword1', firstName: 'Kathy', lastName: 'Jones' }).expect(201))
       .then(() => postRequest(url, { username: 'staffer', password: 'thisisapassword2', firstName: 'Ted', lastName: 'Greene' }).expect(201))
-      .then(() => request(app).get('/roles').expect(200))
+      .then(() => request(app).get('/staffmembers').expect(200))
       .then((response) => {
         expect(response.body.length).to.equal(3);
         expect(response.body[0].username).to.have.property('staff123');
@@ -102,26 +96,22 @@ describe('API StaffMember Endpoints', () => {
       });
   });
 
-  it('gets a staffmember account information by ID', (done) => {
-    request(app)
+  it('get a staffmember account information by ID', () => {
+    return request(app)
       .get('/staffmembers/2')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
-      .end((error, response) => {
-        if (error) {
-          return done(error);
-        }
+      .then((response) => {
         expect(response.body).to.have.property('firstName');
         expect(response.body.name).to.equal('Ted');
         expect(response.body).to.have.property('lastName');
         expect(response.body.description).to.equal('Greene');
-        return done();
       });
   });
 
-  it('replaces staffmember account information by ID', (done) => {
-    request(app)
+  it('replace staffmember account information by ID', () => {
+    return request(app)
       .put('/staffmembers/2')
       .send({
         username: 'staff456',
@@ -131,15 +121,38 @@ describe('API StaffMember Endpoints', () => {
         roles: '',
       })
       .expect(200)
-      .end((error, response) => {
-        if (error) {
-          return done(error);
-        }
-        return done();
+      .then((response) => {
+
       });
   });
 });
 
+describe('API Case Note endpoints', () => {
+  beforeEach((done) => {
+    request(app).delete('/casenotes').end(done);
+  });
+
+  it('create a case note', () => {
+    let url = '/staffmembers';
+    return postRequest(url, { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
+      .then(() => postRequest(url, { username: 'staff456', password: 'thisisapassword1', firstName: 'John', lastName: 'Doe' }).expect(201))
+      .then(() => postRequest('/casenotes', { date: new Date(), content: 'This is a sample case note. Usually, this is a larger body of text.', author: 1 }).expect(201))
+      .then(() => postRequest('/casenotes', { date: new Date(), content: 'This is another sample case note.', author: 2 }).expect(201));
+  });
+
+  it('edit case notes', () => {
+    return postRequest('/casenotes', { date: new Date(), content: 'This is a sample case note. This is a body of text.', author: 1 }).expect(201)
+      .then(() => postRequest('/casenotes', { date: new Date(), content: 'This is another sample case note.', author: 2 }).expect(201))
+      .then(() => {
+        request(app)
+          .put('/casenotes/1')
+          .send({
+            content: 'This is a sample case note. This is a larger body of text with more content.'
+          }).expect(200);
+      });
+  });
+
+});
 
 /*
 
