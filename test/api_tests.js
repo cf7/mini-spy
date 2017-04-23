@@ -17,6 +17,65 @@ describe('GET /', () => {
   });
 });
 
+describe('API Client Endpoints', () => {
+  beforeEach((done) => {
+    request(app).delete('/clients').end(done);
+  });
+
+  it('create a new client', () => {
+    return postRequest('/clients', {
+      firstName: 'John',
+      lastName: 'Doe',
+      nickname: '',
+      birthdate: new Date('1993-3-1'),
+      email: 'jdoe@email.com',
+      phoneNumber: '555-555-5555',
+      casePlan: ''
+    })
+    .expect(201)
+    .then((response) => {
+
+    });
+  });
+
+  it('retrieve all client profiles', () => {
+    let client1 = {
+      firstName: 'John',
+      lastName: 'Doe',
+      nickname: '',
+      birthdate: new Date('1993-3-1'),
+      email: 'jdoe@email.com',
+      phoneNumber: '555-555-5555',
+      casePlan: ''
+    };
+    let client2 = {
+      firstName: 'Stacy',
+      lastName: 'Rodney',
+      nickname: '',
+      birthdate: new Date('1997-12-13'),
+      email: 'jdoe@email.com',
+      phoneNumber: '555-555-5555',
+      casePlan: '',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    return postRequest('/clients', client1).expect(201)
+      .then(() => postRequest('/clients', client2).expect(201))
+      .then(() => {
+        return request(app)
+          .get('/clients')
+          .expect(200)
+          .then((response) => {
+            expect(response.body.length).to.equal(3);
+            expect(response.body[0].firstName).to.equal('John');
+            expect(response.body[0].email).to.equal('jdoe@email.com');
+            expect(response.body[1].firstName).to.equal('Stacy');
+            expect(response.body[1].email).to.equal('srodney@email.com');
+          });
+      });
+  });
+});
+
 describe('API Role Endpoints', () => {
   beforeEach((done) => {
     request(app).delete('/roles').end(done);
@@ -133,16 +192,25 @@ describe('API Case Note endpoints', () => {
   });
 
   it('create a case note', () => {
-    let url = '/staffmembers';
-    return postRequest(url, { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
-      .then(() => postRequest(url, { username: 'staff456', password: 'thisisapassword1', firstName: 'John', lastName: 'Doe' }).expect(201))
-      .then(() => postRequest('/casenotes', { date: new Date(), content: 'This is a sample case note. Usually, this is a larger body of text.', author: 1 }).expect(201))
-      .then(() => postRequest('/casenotes', { date: new Date(), content: 'This is another sample case note.', author: 2 }).expect(201));
+    let client1 = {
+      firstName: 'John',
+      lastName: 'Doe',
+      nickname: '',
+      birthdate: new Date('1993-3-1'),
+      email: 'jdoe@email.com',
+      phoneNumber: '555-555-5555',
+      casePlan: ''
+    };
+    return postRequest('/staffmembers', { username: 'staff123', password: 'thisisapassword', firstName: 'Carrie', lastName: 'Smith' }).expect(201)
+      .then(() => postRequest('/staffmembers', { username: 'staff456', password: 'thisisapassword1', firstName: 'Ben', lastName: 'Yi' }).expect(201))
+      .then(() => postRequest('/clients', client1).expect(201))
+      .then(() => postRequest('/casenotes', { client: 1, author: 1, content: 'This is a sample case note. Usually, this is a larger body of text.' }).expect(201))
+      .then(() => postRequest('/casenotes', { client: 1, author: 2, content: 'This is another sample case note.' }).expect(201));
   });
 
   it('edit case notes', () => {
-    return postRequest('/casenotes', { date: new Date(), content: 'This is a sample case note. This is a body of text.', author: 1 }).expect(201)
-      .then(() => postRequest('/casenotes', { date: new Date(), content: 'This is another sample case note.', author: 2 }).expect(201))
+    return postRequest('/casenotes', { client: 1, author: 1, content: 'This is a sample case note. Usually, this is a larger body of text.' }).expect(201)
+      .then(() => postRequest('/casenotes', { client: 1, author: 2, content: 'This is another sample case note.' }).expect(201))
       .then(() => {
         request(app)
           .put('/casenotes/1')

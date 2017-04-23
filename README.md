@@ -39,6 +39,8 @@ Reset Database (stop, initialize, start)
 npm run db-reset
 ```
 
+### Using Sequelize
+
 Undo Sample Data
 ```
 sequelize db:seed:undo:all
@@ -47,6 +49,17 @@ sequelize db:seed:undo:all
 Selectively Undo Sample Data
 ```
 sequelize db:seed:undo --seed <pathToSeederFile in server/seeders>
+```
+
+Add Sample Data
+```
+sequelize seed:create --name <nameofseederfile>
+```
+
+After creating and modifying the seeder file (with appropriate query calls), add its path to the bash seed file
+`seed_db.sh`
+```
+$(npm bin)/sequelize db:seed --seed $(npm bin)/../../server/seeders/<filename of newly generated seeder file>
 ```
 
 ### Running & Development

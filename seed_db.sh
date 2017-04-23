@@ -4,7 +4,7 @@ $(npm bin)/sequelize db:seed --seed $(npm bin)/../../server/seeders/201704130007
 $(npm bin)/sequelize db:seed --seed $(npm bin)/../../server/seeders/20170413000813-sample-clients.js
 $(npm bin)/sequelize db:seed --seed $(npm bin)/../../server/seeders/20170413000819-sample-roles.js
 $(npm bin)/sequelize db:seed --seed $(npm bin)/../../server/seeders/20170413000839-sample-staff-member-roles.js
-
+$(npm bin)/sequelize db:seed --seed $(npm bin)/../../server/seeders/20170423084855-sample-casenotes.js
 
 # What does everyone think?
 # with this system each new seeder we add needs its own bash line here
