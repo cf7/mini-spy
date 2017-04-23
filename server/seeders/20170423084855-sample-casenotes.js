@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, arrow-body-style */
+/* eslint-disable no-unused-vars */
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -11,46 +11,32 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('StaffMemberRole', [
+    return queryInterface.bulkInsert('CaseNote', [
       {
-        staffMemberId: 1,
-        roleId: 1,
+        clientId: 1,
+        authorId: 1,
+        content: 'Here is casenote for the client.',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        staffMemberId: 2,
-        roleId: 1,
+        clientId: 2,
+        authorId: 1,
+        content: 'Here is casenote for the client.',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        staffMemberId: 3,
-        roleId: 2,
+        clientId: 3,
+        authorId: 5,
+        content: 'Here is casenote for the client.',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        staffMemberId: 4,
-        roleId: 4,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        staffMemberId: 5,
-        roleId: 2,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        staffMemberId: 6,
-        roleId: 3,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        staffMemberId: 7,
-        roleId: 3,
+        clientId: 4,
+        authorId: 4,
+        content: 'Here is casenote for the client.',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -65,6 +51,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
-    return queryInterface.bulkDelete('StaffMemberRole', null, {});
+    return queryInterface.bulkDelete('CaseNote', null, {});
   }
 };

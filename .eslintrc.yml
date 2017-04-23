@@ -19,3 +19,11 @@ rules:
     off
   arrow-parens:
     off
+  prefer-const:
+    off
+  arrow-body-style:
+    off
+  no-trailing-spaces:
+    off
+  padded-blocks:
+    off
