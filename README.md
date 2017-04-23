@@ -1,10 +1,13 @@
 # mini-spy
 
+(Many of the commands and scripts mentioned below most likely only work for Mac OSX. Cross-platform commands are coming soon.)
+
 ### Requirements
-Install `npm` and `postgres` if you don't already have them installed
+Install `npm`, `postgres`, and `neo4j` if you don't already have them installed
 ```
 brew install node
 brew install postgresql
+brew install neo4j
 ```
 
 Install dependencies (run from top-level directory)
@@ -16,8 +19,11 @@ Install Sequelize-CLI Globally
 ```
 npm install -g sequelize-cli
 ```
+### Config Files
 
-### Using the Database
+TODO: config.json
+
+### Using the PostgreSQL Database
 
 Initialize PostgreSQL for mini-spy
 ```
@@ -78,3 +84,7 @@ Test the App
 ```
 npm test
 ```
+
+### Using the Neo4j Database
+
+TODO
