@@ -5,16 +5,24 @@ module.exports = {
     let params = { firstName: 'John' };
     session.run(queryString, params)
       .then((result) => {
-        console.log("Success!!!");
-        console.log(result);
         session.close();
+        response.status(201).send({ message: "Successfully created client profile", result: result });
       })
       .catch((error) => {
-        console.error(error);
+        response.status(500).send(error);
       });
   },
 
   deleteAll(request, response) {
-
+    let session = request.driver.session();
+    let queryString = 'MATCH (n:Client) DETACH DELETE n';
+    session.run(queryString)
+      .then(() => {
+        session.close();
+        response.status(200).send("Successfully deleted all client profiles");
+      })
+      .catch((error) => {
+        response.status(500).send(error);
+      });
   }
 };

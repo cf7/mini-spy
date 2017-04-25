@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 if (process.env.DB === 'neo4j') { // Neo4j
   console.log(neo4j);
-  const driver = neo4j.driver(process.env.NEO4J_DATABASE_URL, neo4j.auth.basic(process.env.DB_USERNAME, process.env.DB_PASSWORD), { encrypted: 'ENCRYPTION_OFF' });
+  const driver = neo4j.driver(process.env.NEO4J_DATABASE_URL, neo4j.auth.basic(process.env.NEO4J_USERNAME, process.env.NEO4J_PASSWORD), { encrypted: 'ENCRYPTION_OFF' });
   driver.onCompleted = () => {
     console.log("Succesfully connected to Neo4j database . . .");
   };

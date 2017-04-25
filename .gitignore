@@ -8,3 +8,4 @@ db
 log
 .sass-cache
 .env
+neo4j_config.sh

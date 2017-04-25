@@ -17,12 +17,13 @@ if (process.env.DB === 'neo4j') {
 
 module.exports = (app) => {
   app.post('/clients', ClientController.create);
-  // app.post('/staffmembers', StaffMemberController.create);
-  // app.get('/staffmembers', StaffMemberController.list);
-  // app.delete('/staffmembers', StaffMemberController.deleteAll);
-  // app.post('/roles', RoleController.create);
-  // app.get('/roles', RoleController.list); // build in optional pagination later
-  // app.delete('/roles', RoleController.deleteAll);
-  // app.post('/casenotes', CaseNoteController.create);
-  // app.delete('/casenotes', CaseNoteController.deleteAll);
+  app.delete('/clients', ClientController.deleteAll);
+  app.post('/staffmembers', StaffMemberController.create);
+  app.get('/staffmembers', StaffMemberController.list);
+  app.delete('/staffmembers', StaffMemberController.deleteAll);
+  app.post('/roles', RoleController.create);
+  app.get('/roles', RoleController.list); // build in optional pagination later
+  app.delete('/roles', RoleController.deleteAll);
+  app.post('/casenotes', CaseNoteController.create);
+  app.delete('/casenotes', CaseNoteController.deleteAll);
 };
