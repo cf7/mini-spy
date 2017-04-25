@@ -1,7 +1,12 @@
 /* eslint-disable no-unused-vars */
+if (process.env.DB === 'neo4j') {
+  process.argv.push('neo4j');
+}
+
 const app = require('../app');
 const expect = require('chai').expect;
 const request = require('supertest');
+
 
 function postRequest(url, payload) {
   return request(app).post(url).send(payload);
@@ -53,7 +58,7 @@ describe('API Client Endpoints', () => {
       lastName: 'Rodney',
       nickname: '',
       birthdate: new Date('1997-12-13'),
-      email: 'jdoe@email.com',
+      email: 'srodney@email.com',
       phoneNumber: '555-555-5555',
       casePlan: '',
       createdAt: new Date(),
@@ -66,7 +71,7 @@ describe('API Client Endpoints', () => {
           .get('/clients')
           .expect(200)
           .then((response) => {
-            expect(response.body.length).to.equal(3);
+            expect(response.body.length).to.equal(2);
             expect(response.body[0].firstName).to.equal('John');
             expect(response.body[0].email).to.equal('jdoe@email.com');
             expect(response.body[1].firstName).to.equal('Stacy');

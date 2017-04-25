@@ -27,3 +27,7 @@ rules:
     off
   padded-blocks:
     off
+  quotes:
+    off
+  global-require:
+    off
