@@ -1,9 +1,10 @@
 module.exports = {
   create(request, response) {
     let session = request.driver.session();
-    let queryString = 'CREATE (c:Client { firstName: {firstName} }) RETURN c';
-    let params = { firstName: 'John' };
-    session.run(queryString, params)
+    let queryString = 'CREATE (c:Client {params}) RETURN c';
+    console.log(request);
+    let parameters = { params: request.body };
+    session.run(queryString, parameters)
       .then((result) => {
         session.close();
         response.status(201).send({ message: "Successfully created client profile", result: result });
@@ -12,7 +13,9 @@ module.exports = {
         response.status(500).send(error);
       });
   },
+  list(request, response) {
 
+  },
   deleteAll(request, response) {
     let session = request.driver.session();
     let queryString = 'MATCH (n:Client) DETACH DELETE n';

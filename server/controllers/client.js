@@ -14,9 +14,15 @@ module.exports = {
       })
       .then((client) => response.status(201).send(client))
       .catch((error) => {
-        console.log(error);
         response.status(400).send(error);
       });
+  },
+
+  list(request, response) {
+    return Client
+      .findAll({})
+      .then((clients) => response.status(200).send(clients))
+      .catch((error) => response.status(400).send(error));
   },
 
   deleteAll(request, response) {

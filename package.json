@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www.js;",
+    "start-neo4j": "node ./bin/www.js \"neo4j\"",
     "nodemon": "export NODE_ENV=development; nodemon ./bin/www.js;",
+    "nodemon-neo4j": "export NODE_ENV=development; nodemon ./bin/www.js -- \"neo4j\";",
     "db-init": "cd $(npm bin)/../..; echo 'Deleting db & logs'; rm -rf db; rm -rf log; mkdir db; mkdir log; echo 'Initializing db'; initdb -U postgres -D $(npm bin)/../../db; pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start; sleep 4; chmod 700 $(npm bin)/../../create_mini_spy.sh; $(npm bin)/../../create_mini_spy.sh; $(npm bin)/sequelize db:migrate; chmod 700 $(npm bin)/../../seed_db.sh; $(npm bin)/../../seed_db.sh;",
     "db-start": "pg_ctl -D $(npm bin)/../../db -l $(npm bin)/../../log/postgres.log start",
     "db-stop": "pg_ctl -D $(npm bin)/../../db stop -s -m fast",
@@ -13,7 +15,7 @@
     "test-db-reset": "npm run db-stop; npm run db-init; npm run db-start;",
     "lint": "eslint app.js **/*.js",
     "test": "export NODE_ENV=test; npm run test-db-reset; mocha; npm run db-stop;",
-    "neo4j-reset": "neo4j stop; neo4j start; sleep 2; chmod 700 $(npm bin)/../../neo4j_config.sh; source $(npm bin)/../../neo4j_config.sh; echo 'Environment Variables Set'; cypher-shell --debug 'MATCH (n) DETACH DELETE n'; neo4j start;"
+    "neo4j-reset": "neo4j stop; neo4j start; sleep 4; chmod 700 $(npm bin)/../../neo4j_config.sh; source $(npm bin)/../../neo4j_config.sh; echo 'Environment Variables Set'; cypher-shell --debug 'MATCH (n) DETACH DELETE n'; neo4j start;"
   },
   "repository": {
     "type": "git",

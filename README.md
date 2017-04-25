@@ -97,7 +97,6 @@ Add the following lines to that `.env` file.
 NEO4J_DATABASE_URL=bolt://localhost:7687   <-- default url for neo4j server
 NEO4J_USERNAME=your_neo4j_username
 NEO4J_PASSWORD=your_neo4j_password
-DB=neo4j                                   <-- "neo4j" exactly
 ```
 
 Second, make sure there is a `neo4j_config.sh` bash script in the top-level of the `mini-spy` repo.
@@ -106,8 +105,25 @@ Add the following lines to that `neo4j_config.sh` file.
 #!/bin/bash
 
 export NEO4J_DATABASE_URL=bolt://localhost:7687;
-export NEO4J_USERNAME=neo4j;
-export NEO4J_PASSWORD=thisisapassword3;
+export NEO4J_USERNAME=your_neo4j_username;
+export NEO4J_PASSWORD=your_neo4j_password;
 ```
 
+Start the Neo4j Database (and clear all data)
+```
+npm run neo4j-reset
+```
 
+Stop the Neo4j Database
+```
+neo4j stop
+```
+
+Start the Web server with Neo4j configuration
+```
+npm run start-neo4j
+```
+With nodemon
+```
+npm run nodemon-neo4j
+```
