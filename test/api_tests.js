@@ -1,7 +1,12 @@
 /* eslint-disable no-unused-vars */
+if (process.env.DB === 'neo4j') {
+  process.argv.push('neo4j');
+}
+
 const app = require('../app');
 const expect = require('chai').expect;
 const request = require('supertest');
+
 
 function postRequest(url, payload) {
   return request(app).post(url).send(payload);

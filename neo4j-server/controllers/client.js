@@ -2,7 +2,6 @@ module.exports = {
   create(request, response) {
     let session = request.driver.session();
     let queryString = 'CREATE (c:Client {params}) RETURN c';
-    console.log(request);
     let parameters = { params: request.body };
     session.run(queryString, parameters)
       .then((result) => {

@@ -15,6 +15,7 @@
     "test-db-reset": "npm run db-stop; npm run db-init; npm run db-start;",
     "lint": "eslint app.js **/*.js",
     "test": "export NODE_ENV=test; npm run test-db-reset; mocha; npm run db-stop;",
+    "test-neo4j": "export NODE_ENV=test; export DB=neo4j; npm run neo4j-reset; mocha; unset DB; neo4j stop;",
     "neo4j-reset": "neo4j stop; neo4j start; sleep 4; chmod 700 $(npm bin)/../../neo4j_config.sh; source $(npm bin)/../../neo4j_config.sh; echo 'Environment Variables Set'; cypher-shell --debug 'MATCH (n) DETACH DELETE n'; neo4j start;"
   },
   "repository": {

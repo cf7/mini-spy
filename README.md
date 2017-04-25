@@ -127,3 +127,8 @@ With nodemon
 ```
 npm run nodemon-neo4j
 ```
+
+Test with Neo4j
+```
+npm run test-neo4j
+```
