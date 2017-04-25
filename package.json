@@ -16,7 +16,7 @@
     "lint": "eslint app.js **/*.js",
     "test": "export NODE_ENV=test; npm run test-db-reset; mocha; npm run db-stop;",
     "test-neo4j": "export NODE_ENV=test; export DB=neo4j; chmod 700 $(npm bin)/../../neo4j_config.sh; source $(npm bin)/../../neo4j_config.sh; npm run neo4j-reset; mocha; unset DB; neo4j stop;",
-    "neo4j-reset": "chmod 700 $(npm bin)/../../neo4j_config.sh; source $(npm bin)/../../neo4j_config.sh; echo 'Environment Variables Set'; neo4j start; sleep 5; cypher-shell --debug --address $NEO4J_DATABASE_URL 'MATCH (n) DETACH DELETE n';"
+    "neo4j-reset": "chmod 700 $(npm bin)/../../neo4j_config.sh; source $(npm bin)/../../neo4j_config.sh; echo 'Environment Variables Set'; neo4j stop; neo4j start; sleep 5; cypher-shell --debug --address \"$NEO4J_DATABASE_URL\" 'MATCH (n) DETACH DELETE n';"
   },
   "repository": {
     "type": "git",
