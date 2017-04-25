@@ -87,19 +87,11 @@ npm test
 
 ### Using the Neo4j Database
 
-After installing Neo4j (either from their website or via brew (see above)) setup the username and password when first starting the Neo4j server.
+After installing Neo4j (either from their website or via brew (see above)) follow their steps to setup a username and password when first starting the Neo4j server.
 
-There are two extra config files needed to run Neo4j with `mini-spy`.
+There is one extra config file needed to run Neo4j with `mini-spy`.
 
-First, make sure there is a `.env` file in the top-level of the `mini-spy` repo.
-Add the following lines to that `.env` file.
-```
-NEO4J_DATABASE_URL=bolt://localhost:7687   <-- default url for neo4j server
-NEO4J_USERNAME=your_neo4j_username
-NEO4J_PASSWORD=your_neo4j_password
-```
-
-Second, make sure there is a `neo4j_config.sh` bash script in the top-level of the `mini-spy` repo.
+Make sure there is a `neo4j_config.sh` bash script in the top-level of the `mini-spy` repo.
 Add the following lines to that `neo4j_config.sh` file.
 ```
 #!/bin/bash
