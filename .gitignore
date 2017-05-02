@@ -9,3 +9,4 @@ log
 .sass-cache
 .env
 *.log.*
+neo4j_config.sh

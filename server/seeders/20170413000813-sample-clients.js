@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, arrow-body-style */
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -35,10 +36,10 @@ module.exports = {
       },
       {
         firstName: 'Stacy',
-        lastName: 'White',
+        lastName: 'Rodney',
         nickname: '',
         birthdate: new Date('1997-12-13'),
-        email: 'jdoe@email.com',
+        email: 'srodney@email.com',
         phoneNumber: '555-555-5555',
         casePlan: '',
         createdAt: new Date(),
@@ -49,7 +50,7 @@ module.exports = {
         lastName: 'Woods',
         nickname: '',
         birthdate: new Date('1992-1-18'),
-        email: 'jdoe@email.com',
+        email: 'twoods@email.com',
         phoneNumber: '555-555-5555',
         casePlan: '',
         createdAt: new Date(),

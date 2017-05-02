@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       associate: (models) => {
         StaffMember.hasMany(models.Client, {
           foreignKey: 'caseManagerId',
-          as: 'clients',
+          as: 'Clients',
+        });
+        StaffMember.hasMany(models.CaseNote, {
+          foreignKey: 'author'
         });
         StaffMember.belongsToMany(models.Role, {
           through: 'StaffMemberRole',
